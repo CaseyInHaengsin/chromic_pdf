@@ -27,9 +27,9 @@ defmodule ChromicPDF.SpawnSession do
       "userAgent" => "ChromicPDF #{@version}"
     })
 
-    if_option {:timezone, tz} when is_binary(tz) do
-      call(:set_timezone, "Emulation.setTimezoneOverride", [], %{
-        "timezoneId" => tz
+    if_option :timezone do
+      call(:set_timezone, "Emulation.setTimezoneOverride", ["timezone"], %{
+        "timezoneId" => &Map.fetch!(&1, :timezone)
       })
     end
 

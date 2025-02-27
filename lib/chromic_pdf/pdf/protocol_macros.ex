@@ -117,6 +117,8 @@ defmodule ChromicPDF.ProtocolMacros do
     quote do
       @steps {:call, unquote(name), 2}
       def unquote(name)(state, call_id) do
+        IO.inspect(state, label: "STATE")
+
         params =
           fetch_params_for_call(
             state,

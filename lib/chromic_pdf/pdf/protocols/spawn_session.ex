@@ -27,6 +27,12 @@ defmodule ChromicPDF.SpawnSession do
       "userAgent" => "ChromicPDF #{@version}"
     })
 
+    if_option {:timezone, timezone} do
+      call(:set_timezone, "Emulation.setTimezoneOverride", [], %{
+        "timezoneId" => timezone
+      })
+    end
+
     if_option {:offline, true} do
       call(
         :offline_mode,

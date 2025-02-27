@@ -167,6 +167,7 @@ defmodule ChromicPDF.Protocol do
         :on_demand => true,
         :unhandled_runtime_exceptions => true,
         :console_api_calls => true,
+        :timezone => true,
         :__protocol__ => true
       }
     }

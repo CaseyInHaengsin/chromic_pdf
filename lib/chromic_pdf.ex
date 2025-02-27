@@ -184,6 +184,17 @@ defmodule ChromicPDF do
         ]
       end
 
+  ### Timezone override
+
+  By default, Chrome will use the system timezone. You can override this by setting the `:timezone` option
+  to a valid IANA timezone identifier (e.g. "America/New_York", "Europe/London", "Asia/Tokyo").
+
+      defp chromic_pdf_opts do
+        [
+          session_pool: [timezone: "UTC"]
+        ]
+      end
+
   ### Multiple session pools
 
   ChromicPDF supports running multiple named session pools to allow varying session configuration.

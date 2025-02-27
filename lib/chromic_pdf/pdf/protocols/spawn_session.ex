@@ -27,10 +27,16 @@ defmodule ChromicPDF.SpawnSession do
       "userAgent" => "ChromicPDF #{@version}"
     })
 
-    if_option :timezone do
-      call(:set_timezone, "Emulation.setTimezoneOverride", ["timezone"], %{
-        "timezoneId" => &Map.fetch!(&1, :timezone)
-      })
+    if_option :set_timezone do
+      call(
+        :set_timezone,
+        "Emulation.setTimezoneOverride",
+        fn state ->
+          IO.inspect(state)
+          %{"timezoneId" => Map.get(state, :timezone)}
+        end,
+        %{}
+      )
     end
 
     if_option {:offline, true} do
